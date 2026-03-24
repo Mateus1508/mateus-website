@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-dark text-slate-100 overflow-x-hidden;
+    font-family: 'DM Sans', sans-serif;
+    cursor: none;
+  }
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-dark;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cyan-dark rounded-full;
+  }
+}
+
+/* Used by Hero inline animation names; Tailwind only emits @keyframes when a utility class references them. */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 36px rgba(0, 229, 212, 0.55);
+  }
+  .grid-bg {
+    background-image: linear-gradient(
+        rgba(0, 229, 212, 0.03) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(0, 229, 212, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:border-cyan/30 hover:shadow-cyan-sm;
+  }
+}
