@@ -1,6 +1,9 @@
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "../i18n/useTranslation";
 
 export default function Hero() {
+  const { m } = useTranslation();
+
   return (
     <section
       id="hero"
@@ -32,11 +35,11 @@ export default function Hero() {
         >
           <div className="inline-flex items-center gap-2.5 bg-cyan/[0.07] border border-cyan/25 text-cyan font-display text-[0.68rem] font-semibold uppercase tracking-[0.22em] px-4 py-2 rounded-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse-slow" />
-            Consultoria de Software
+            {m.hero.badgeConsulting}
           </div>
           <div className="inline-flex items-center gap-2 bg-emerald-500/[0.08] border border-emerald-500/30 text-emerald-400 font-display text-[0.68rem] font-semibold uppercase tracking-[0.18em] px-4 py-2 rounded-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Aceitando projetos
+            {m.hero.badgeProjects}
           </div>
         </div>
 
@@ -49,8 +52,8 @@ export default function Hero() {
             opacity: 0,
           }}
         >
-          Desenvolvimento, Evolução e Gestão de{" "}
-          <span className="text-cyan text-glow">Software Sob Medida.</span>
+          {m.hero.h1Before}{" "}
+          <span className="text-cyan text-glow">{m.hero.h1Accent}</span>
         </h1>
 
         {/* Subtitle */}
@@ -58,8 +61,7 @@ export default function Hero() {
           className="text-slate-400 font-light text-lg max-w-2xl leading-[1.85] mb-8"
           style={{ animation: "fadeUp 0.7s 0.22s ease both", opacity: 0 }}
         >
-          Do zero ao suporte contínuo: crio aplicativos, sistemas e automações,
-          além de garantir que sua tecnologia atual nunca pare de crescer.
+          {m.hero.subtitle}
         </p>
 
         {/* CTA */}
@@ -71,7 +73,7 @@ export default function Hero() {
             href="#contato"
             className="inline-flex items-center gap-2.5 bg-cyan text-dark font-display font-bold text-[0.8rem] uppercase tracking-[0.12em] px-7 py-4 rounded hover:shadow-cyan-md hover:-translate-y-0.5 transition-all duration-300"
           >
-            Solicitar Diagnóstico Técnico <ArrowRight size={16} />
+            {m.hero.cta} <ArrowRight size={16} />
           </a>
         </div>
       </div>

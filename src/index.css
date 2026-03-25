@@ -25,6 +25,279 @@
   }
 }
 
+/*
+  Light theme: white surface, grid in brand rgb(0, 229, 212), black + dark green type.
+*/
+html[data-theme='light'] {
+  color-scheme: light;
+}
+
+html[data-theme='light'] body {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+}
+
+html[data-theme='light'] ::-webkit-scrollbar-track {
+  background: #f0f4f3;
+}
+
+html[data-theme='light'] ::-webkit-scrollbar-thumb {
+  background: rgb(0, 120, 108);
+  border-radius: 9999px;
+}
+
+html[data-theme='light'] .grid-bg {
+  background-color: #ffffff;
+  background-image: linear-gradient(
+      rgba(0, 229, 212, 0.35) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 229, 212, 0.35) 1px,
+      transparent 1px
+    );
+  background-size: 60px 60px;
+}
+
+html[data-theme='light'] .text-glow {
+  text-shadow: 0 0 24px rgb(0 140 130 / 0.4);
+}
+
+/* Surfaces (cards, nav, inputs) */
+html[data-theme='light'] .bg-dark {
+  background-color: #ffffff !important;
+}
+
+html[data-theme='light'] .bg-dark\/90 {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+}
+
+html[data-theme='light'] .bg-dark-2 {
+  background-color: #f4faf9 !important;
+}
+
+html[data-theme='light'] .bg-dark-2\/95 {
+  background-color: rgba(244, 250, 249, 0.97) !important;
+}
+
+html[data-theme='light'] .bg-dark-3 {
+  background-color: #e8f4f2 !important;
+}
+
+html[data-theme='light'] .border-dark-5 {
+  border-color: rgba(13, 77, 71, 0.22) !important;
+}
+
+/* Primary text: black; secondary/muted: dark green */
+html[data-theme='light'] .text-slate-100,
+html[data-theme='light'] .text-slate-200 {
+  color: #0a0a0a !important;
+}
+
+html[data-theme='light'] .text-slate-300 {
+  color: #111827 !important;
+}
+
+html[data-theme='light'] .text-slate-400 {
+  color: #0d4d47 !important;
+}
+
+html[data-theme='light'] .text-slate-500 {
+  color: #0a3d38 !important;
+}
+
+html[data-theme='light'] .text-slate-600 {
+  color: #064339 !important;
+}
+
+html[data-theme='light'] .text-slate-700 {
+  color: #052e2a !important;
+}
+
+/*
+  Brand accent (light): darker teal-green everywhere the neon cyan (#00e5d4) is used.
+  Grid lines above stay rgb(0, 229, 212). Solid fills use a step lighter for contrast with text-dark.
+*/
+html[data-theme='light'] .text-cyan {
+  color: rgb(0 140 130) !important;
+}
+
+html[data-theme='light'] .text-cyan\/60 {
+  color: rgb(0 140 130 / 0.6) !important;
+}
+
+html[data-theme='light'] .text-cyan\/70 {
+  color: rgb(0 140 130 / 0.7) !important;
+}
+
+html[data-theme='light'] .group:hover .group-hover\:text-cyan {
+  color: rgb(0 140 130) !important;
+}
+
+html[data-theme='light'] .group:hover .group-hover\:text-cyan\/40 {
+  color: rgb(0 140 130 / 0.4) !important;
+}
+
+html[data-theme='light'] .hover\:text-cyan:hover {
+  color: rgb(0 140 130) !important;
+}
+
+html[data-theme='light'] .bg-cyan {
+  background-color: rgb(0 140 130) !important;
+}
+
+/* Light buttons: keep cyan background, but make text white for contrast */
+html[data-theme='light'] .bg-cyan.text-dark {
+  color: #ffffff !important;
+}
+
+html[data-theme='light'] .bg-cyan\/10 {
+  background-color: rgb(0 140 130 / 0.1) !important;
+}
+
+html[data-theme='light'] .bg-cyan\/60 {
+  background-color: rgb(0 140 130 / 0.6) !important;
+}
+
+html[data-theme='light'] .bg-cyan\/\[0\.03\] {
+  background-color: rgb(0 140 130 / 0.03) !important;
+}
+
+html[data-theme='light'] .bg-cyan\/\[0\.04\] {
+  background-color: rgb(0 140 130 / 0.04) !important;
+}
+
+html[data-theme='light'] .bg-cyan\/\[0\.05\] {
+  background-color: rgb(0 140 130 / 0.05) !important;
+}
+
+html[data-theme='light'] .bg-cyan\/\[0\.06\] {
+  background-color: rgb(0 140 130 / 0.06) !important;
+}
+
+html[data-theme='light'] .bg-cyan\/\[0\.07\] {
+  background-color: rgb(0 140 130 / 0.07) !important;
+}
+
+html[data-theme='light'] .bg-cyan\/\[0\.08\] {
+  background-color: rgb(0 140 130 / 0.08) !important;
+}
+
+html[data-theme='light'] .border-cyan\/10 {
+  border-color: rgb(0 140 130 / 0.1) !important;
+}
+
+html[data-theme='light'] .border-cyan\/15 {
+  border-color: rgb(0 140 130 / 0.15) !important;
+}
+
+html[data-theme='light'] .border-cyan\/20 {
+  border-color: rgb(0 140 130 / 0.2) !important;
+}
+
+html[data-theme='light'] .border-cyan\/25 {
+  border-color: rgb(0 140 130 / 0.25) !important;
+}
+
+html[data-theme='light'] .border-cyan\/30 {
+  border-color: rgb(0 140 130 / 0.3) !important;
+}
+
+html[data-theme='light'] .border-cyan\/40 {
+  border-color: rgb(0 140 130 / 0.4) !important;
+}
+
+html[data-theme='light'] .border-cyan\/50 {
+  border-color: rgb(0 140 130 / 0.5) !important;
+}
+
+html[data-theme='light'] .border-cyan\/60 {
+  border-color: rgb(0 140 130 / 0.6) !important;
+}
+
+html[data-theme='light'] .hover\:border-cyan:hover {
+  border-color: rgb(0 140 130) !important;
+}
+
+html[data-theme='light'] .hover\:border-cyan\/30:hover {
+  border-color: rgb(0 140 130 / 0.3) !important;
+}
+
+html[data-theme='light'] .hover\:border-cyan\/50:hover {
+  border-color: rgb(0 140 130 / 0.5) !important;
+}
+
+html[data-theme='light'] .hover\:bg-cyan\/10:hover {
+  background-color: rgb(0 140 130 / 0.1) !important;
+}
+
+html[data-theme='light'] .focus\:border-cyan\/50:focus {
+  border-color: rgb(0 140 130 / 0.5) !important;
+}
+
+html[data-theme='light'] .via-cyan\/15 {
+  --tw-gradient-to: rgb(0 140 130 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(0 140 130 / 0.15) var(--tw-gradient-via-position),
+    var(--tw-gradient-to) !important;
+}
+
+html[data-theme='light'] .via-cyan\/35 {
+  --tw-gradient-to: rgb(0 140 130 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(0 140 130 / 0.35) var(--tw-gradient-via-position),
+    var(--tw-gradient-to) !important;
+}
+
+html[data-theme='light'] .via-cyan\/40 {
+  --tw-gradient-to: rgb(0 140 130 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(0 140 130 / 0.4) var(--tw-gradient-via-position),
+    var(--tw-gradient-to) !important;
+}
+
+html[data-theme='light'] .shadow-cyan-sm,
+html[data-theme='light'] .hover\:shadow-cyan-sm:hover,
+html[data-theme='light'] .focus\:shadow-cyan-sm:focus {
+  --tw-shadow: 0 0 12px rgb(0 140 130 / 0.22) !important;
+  --tw-shadow-colored: 0 0 12px rgb(0 140 130 / 0.22) !important;
+}
+
+html[data-theme='light'] .hover\:shadow-cyan-md:hover {
+  --tw-shadow: 0 0 28px rgb(0 140 130 / 0.32) !important;
+  --tw-shadow-colored: 0 0 28px rgb(0 140 130 / 0.32) !important;
+}
+
+html[data-theme='light'] .border-slate-700 {
+  border-color: rgba(6, 67, 57, 0.4) !important;
+}
+
+html[data-theme='light'] .from-dark {
+  --tw-gradient-from: #ffffff var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+html[data-theme='light'] .text-emerald-400 {
+  color: #047857 !important;
+}
+
+html[data-theme='light'] .border-emerald-500\/30 {
+  border-color: rgba(4, 120, 87, 0.35) !important;
+}
+
+html[data-theme='light'] .bg-emerald-500\/\[0\.08\] {
+  background-color: rgba(4, 120, 87, 0.08) !important;
+}
+
+/* Custom cursor: blend mode on white */
+html[data-theme='light'] .mix-blend-screen {
+  mix-blend-mode: normal;
+}
+
+html[data-theme='light'] .placeholder\:text-slate-600::placeholder {
+  color: #0a3d38 !important;
+  opacity: 0.85;
+}
+
 /* Used by Hero inline animation names; Tailwind only emits @keyframes when a utility class references them. */
 @keyframes fadeUp {
   0% {
@@ -39,7 +312,7 @@
 
 @layer utilities {
   .text-glow {
-    text-shadow: 0 0 36px rgba(0, 229, 212, 0.55);
+    text-shadow: 0 0 36px rgba(0, 140, 130, 0.55);
   }
   .grid-bg {
     background-image: linear-gradient(

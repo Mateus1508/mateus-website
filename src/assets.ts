@@ -1,4 +1,3 @@
-export const LOGO_ICON = '/logo-softbel.png'
-export const LOGO_FULL = '/logo-softbel.png'
-
-export { PHOTO_MATEUS } from './photoMateus'
+export { LOGO_SOFTBEL as LOGO_ICON } from './assets/images'
+export { LOGO_SOFTBEL as LOGO_FULL } from './assets/images'
+export { PHOTO_MATEUS } from './assets/images'
