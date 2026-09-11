@@ -9,8 +9,7 @@ export type NavLabelKey =
 export const NAVBAR_ITEMS = [
   { href: '#hero', labelKey: 'home' as const },
   { href: '#sobre', labelKey: 'about' as const },
-  { href: '#servicos', labelKey: 'services' as const },
   { href: '#portfolio', labelKey: 'portfolio' as const },
-  { href: '#fundador', labelKey: 'founder' as const },
+  { href: '#servicos', labelKey: 'services' as const },
   { href: '#contato', labelKey: 'contact' as const },
 ] as const satisfies ReadonlyArray<{ href: string; labelKey: NavLabelKey }>

@@ -6,7 +6,7 @@ export default function Sobre() {
   const { m } = useTranslation();
 
   return (
-    <section id="sobre" className="relative py-14 overflow-hidden">
+    <section id="como-trabalho" className="relative py-14 overflow-hidden">
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[350px] h-[500px] bg-cyan/[0.04] blur-[100px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6">

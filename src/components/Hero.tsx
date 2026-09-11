@@ -28,6 +28,13 @@ export default function Hero() {
 
       {/* Main content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-12 w-full">
+        <p
+          className="font-mono text-cyan text-sm mb-4 tracking-wide"
+          style={{ animation: "fadeUp 0.5s ease both" }}
+        >
+          {m.hero.greeting}
+        </p>
+
         {/* Badges row */}
         <div
           className="flex flex-wrap items-center gap-3 mb-6"
@@ -74,6 +81,12 @@ export default function Hero() {
             className="inline-flex items-center gap-2.5 bg-cyan text-dark font-display font-bold text-[0.8rem] uppercase tracking-[0.12em] px-7 py-4 rounded hover:shadow-cyan-md hover:-translate-y-0.5 transition-all duration-300"
           >
             {m.hero.cta} <ArrowRight size={16} />
+          </a>
+          <a
+            href="#portfolio"
+            className="inline-flex items-center gap-2.5 border border-cyan/50 text-cyan font-display font-bold text-[0.8rem] uppercase tracking-[0.12em] px-7 py-4 rounded hover:bg-cyan/10 hover:border-cyan transition-all duration-300"
+          >
+            {m.hero.ctaSecondary}
           </a>
         </div>
       </div>

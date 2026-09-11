@@ -1,6 +1,26 @@
 import { useState, type FormEvent } from "react";
-import { Send, MapPin, Mail, MessageSquare } from "lucide-react";
+import { Send, MapPin, Mail, MessageSquare, Loader2 } from "lucide-react";
 import { useTranslation } from "../i18n/useTranslation";
+
+const SENT_KEY = "mb-contact-sent";
+const SENT_TTL_MS = 24 * 60 * 60 * 1000;
+
+function hasRecentSend() {
+  try {
+    const at = Number(localStorage.getItem(SENT_KEY));
+    return Number.isFinite(at) && Date.now() - at < SENT_TTL_MS;
+  } catch {
+    return false;
+  }
+}
+
+function rememberSend() {
+  try {
+    localStorage.setItem(SENT_KEY, String(Date.now()));
+  } catch {
+    // private mode / blocked storage
+  }
+}
 
 interface FormData {
   name: string;
@@ -19,7 +39,12 @@ export default function Contato() {
     service: "",
     message: "",
   });
-  const [sent, setSent] = useState(false);
+  const [sent, setSent] = useState(() =>
+    typeof window === "undefined" ? false : hasRecentSend(),
+  );
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const [honeypot, setHoneypot] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -29,10 +54,47 @@ export default function Contato() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", form);
-    setSent(true);
+    if (sending) return;
+    setError("");
+    setSending(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          service: form.service,
+          message: form.message,
+          website: honeypot,
+        }),
+      });
+
+      const data = (await res.json().catch(() => null)) as
+        | { ok?: boolean; error?: string }
+        | null;
+
+      if (res.ok && data?.ok) {
+        rememberSend();
+        setSent(true);
+        return;
+      }
+
+      const code = data?.error;
+      if (code === "validation") setError(m.contato.errorValidation);
+      else if (code === "rate_limit") {
+        rememberSend();
+        setSent(true);
+      } else setError(m.contato.errorSend);
+    } catch {
+      setError(m.contato.errorNetwork);
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputClass =
@@ -42,8 +104,8 @@ export default function Contato() {
     {
       icon: <Mail size={18} />,
       label: m.contato.labelEmail,
-      value: "contatosoftbel@gmail.com",
-      href: "mailto:contatosoftbel@gmail.com",
+      value: m.contato.emailValue,
+      href: `mailto:${m.contato.emailValue}`,
     },
     {
       icon: <MessageSquare size={18} />,
@@ -135,7 +197,7 @@ export default function Contato() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="bg-dark-2 border border-dark-5 rounded-xl p-8 space-y-5"
+                className="relative bg-dark-2 border border-dark-5 rounded-xl p-8 space-y-5"
               >
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
@@ -146,6 +208,8 @@ export default function Contato() {
                       type="text"
                       name="name"
                       required
+                      minLength={2}
+                      maxLength={80}
                       value={form.name}
                       onChange={handleChange}
                       placeholder={m.contato.phName}
@@ -160,6 +224,7 @@ export default function Contato() {
                       type="email"
                       name="email"
                       required
+                      maxLength={254}
                       value={form.email}
                       onChange={handleChange}
                       placeholder={m.contato.phEmail}
@@ -176,6 +241,7 @@ export default function Contato() {
                     <input
                       type="text"
                       name="company"
+                      maxLength={120}
                       value={form.company}
                       onChange={handleChange}
                       placeholder={m.contato.phCompany}
@@ -209,6 +275,8 @@ export default function Contato() {
                   <textarea
                     name="message"
                     required
+                    minLength={10}
+                    maxLength={4000}
                     rows={5}
                     value={form.message}
                     onChange={handleChange}
@@ -217,11 +285,42 @@ export default function Contato() {
                   />
                 </div>
 
+                <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+                  <label>
+                    Website
+                    <input
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </label>
+                </div>
+
+                {error ? (
+                  <p className="text-red-400 text-sm font-light" role="alert">
+                    {error}
+                  </p>
+                ) : null}
+
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-3 bg-cyan text-dark font-display font-bold text-[0.8rem] uppercase tracking-[0.12em] py-4 rounded hover:shadow-cyan-md hover:-translate-y-0.5 transition-all duration-300"
+                  disabled={sending}
+                  aria-busy={sending}
+                  className="w-full inline-flex items-center justify-center gap-3 bg-cyan text-dark font-display font-bold text-[0.8rem] uppercase tracking-[0.12em] py-4 rounded hover:shadow-cyan-md hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:hover:translate-y-0 disabled:cursor-wait"
                 >
-                  {m.contato.submit} <Send size={15} />
+                  {sending ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      {m.contato.sending}
+                    </>
+                  ) : (
+                    <>
+                      {m.contato.submit} <Send size={15} />
+                    </>
+                  )}
                 </button>
               </form>
             )}

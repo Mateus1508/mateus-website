@@ -15,10 +15,10 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <Sobre />
-        <Servicos />
-        <Portfolio />
         <Fundador />
+        <Sobre />
+        <Portfolio />
+        <Servicos />
         <Contato />
       </main>
       <Footer />

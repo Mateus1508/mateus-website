@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Globe, Menu, Moon, Sun, X } from 'lucide-react'
-import { LOGO_FULL } from '../assets'
 import { NAVBAR_ITEMS } from '../content/navbarLinks'
+import { LOGO_MB } from '../assets'
 import { usePreferences } from '../context/PreferencesContext'
 import { useTranslation } from '../i18n/useTranslation'
 
@@ -28,12 +28,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
         <a href="#hero" className="flex items-center h-10 group gap-3">
           <img
-            src={LOGO_FULL}
+            src={LOGO_MB}
             alt={m.logoAlt}
-            className="h-10 w-auto object-contain drop-shadow-[0_0_10px_rgba(0,229,212,0.4)] group-hover:drop-shadow-[0_0_20px_rgba(0,229,212,0.7)] transition-all duration-300"
+            className="h-12 w-auto object-contain drop-shadow-[0_0_10px_rgba(0,229,212,0.35)] group-hover:drop-shadow-[0_0_18px_rgba(0,229,212,0.6)] transition-all duration-300"
           />
-          <span className="font-display font-extrabold uppercase tracking-[0.22em] text-[0.8rem] text-slate-200 group-hover:text-cyan transition-colors duration-300">
-            Softbel
+          <span className="font-display font-extrabold uppercase tracking-[0.18em] text-[0.8rem] text-slate-200 group-hover:text-cyan transition-colors duration-300">
+            {m.nav.brand}
           </span>
         </a>
 

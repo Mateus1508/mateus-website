@@ -6,7 +6,7 @@ export default function Fundador() {
   const { m } = useTranslation();
 
   return (
-    <section id="fundador" className="relative py-14 overflow-hidden">
+    <section id="sobre" className="relative py-14 overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-cyan/[0.04] blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6">
