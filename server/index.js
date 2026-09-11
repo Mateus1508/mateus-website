@@ -67,6 +67,17 @@ function recordHit(key) {
   hitsByKey.set(key, stamps)
 }
 
+function logEmail(event, data = {}) {
+  const line = ['[email]', event]
+  for (const [key, value] of Object.entries(data)) {
+    if (value === undefined || value === '') continue
+    line.push(`${key}=${String(value)}`)
+  }
+  const text = line.join(' ')
+  if (event === 'erro' || event === 'smtp_falhou') console.error(text)
+  else console.log(text)
+}
+
 function parseBody(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) return null
 
@@ -106,9 +117,11 @@ async function getTransporter() {
   transporterPromise = (async () => {
     if (smtpUser && smtpPass) {
       const port = Number(process.env.SMTP_PORT) || 465
+      const host = process.env.SMTP_HOST || 'smtp.gmail.com'
       fallbackTo = process.env.CONTACT_TO || smtpUser
+      logEmail('smtp_configurado', { host, port, user: smtpUser })
       return nodemailer.createTransport({
-        host: process.env.SMTP_HOST || 'smtp.gmail.com',
+        host,
         port,
         secure: process.env.SMTP_SECURE !== 'false',
         auth: {
@@ -119,12 +132,13 @@ async function getTransporter() {
     }
 
     if (process.env.NODE_ENV === 'production') {
+      logEmail('smtp_falhou', { motivo: 'SMTP nao configurado' })
       throw new Error('SMTP not configured')
     }
 
     const test = await nodemailer.createTestAccount()
     fallbackTo = test.user
-    console.log('SMTP de teste (Ethereal):', test.user)
+    logEmail('smtp_teste', { user: test.user, host: test.smtp.host })
     return nodemailer.createTransport({
       host: test.smtp.host,
       port: test.smtp.port,
@@ -139,23 +153,28 @@ async function getTransporter() {
 app.post('/api/contact', async (req, res) => {
   const parsed = parseBody(req.body)
   if (!parsed) {
+    logEmail('recusado', { motivo: 'validacao' })
     return res.status(400).json({ ok: false, error: 'validation' })
   }
 
   if (parsed.honeypot) {
+    logEmail('ignorado', { motivo: 'honeypot' })
     return res.json({ ok: true })
   }
 
   const ip = clientKey(req)
   if (tooMany(ip) || tooMany(parsed.email)) {
+    logEmail('bloqueado', { motivo: 'rate_limit', email: parsed.email })
     return res.status(429).json({ ok: false, error: 'rate_limit' })
   }
 
+  const started = Date.now()
   try {
     const transporter = await getTransporter()
     const to = process.env.CONTACT_TO || smtpUser || fallbackTo
     const from = process.env.CONTACT_FROM || smtpUser || fallbackTo || 'noreply@localhost'
     if (!to) {
+      logEmail('erro', { motivo: 'destinatario_ausente' })
       return res.status(503).json({ ok: false, error: 'send_failed' })
     }
 
@@ -180,6 +199,14 @@ app.post('/api/contact', async (req, res) => {
     `
 
     const senderName = parsed.name.replace(/["\\]/g, '').trim() || 'Site contact'
+    logEmail('enviando', {
+      nome: senderName,
+      replyTo: parsed.email,
+      to,
+      assunto: parsed.service || 'n/a',
+      tamanho: parsed.message.length,
+    })
+
     const info = await transporter.sendMail({
       from: `"${senderName} via portfolio" <${from}>`,
       to,
@@ -191,14 +218,24 @@ app.post('/api/contact', async (req, res) => {
 
     const preview = nodemailer.getTestMessageUrl(info)
     if (preview) {
-      console.log('Preview do e-mail:', preview)
+      logEmail('preview', { url: preview })
     }
 
     recordHit(ip)
     recordHit(parsed.email)
+    logEmail('ok', {
+      messageId: info.messageId,
+      accepted: Array.isArray(info.accepted) ? info.accepted.join(',') : info.accepted,
+      rejected: Array.isArray(info.rejected) ? info.rejected.join(',') : info.rejected,
+      response: info.response,
+      ms: Date.now() - started,
+    })
     return res.json({ ok: true })
   } catch (err) {
-    console.error('Falha ao enviar contato:', err instanceof Error ? err.message : 'erro')
+    logEmail('erro', {
+      motivo: err instanceof Error ? err.message : 'erro',
+      ms: Date.now() - started,
+    })
     return res.status(503).json({ ok: false, error: 'send_failed' })
   }
 })
