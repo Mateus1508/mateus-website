@@ -2,7 +2,7 @@ import { useState, type FormEvent } from "react";
 import { Send, MapPin, Mail, MessageSquare, Loader2 } from "lucide-react";
 import { useTranslation } from "../i18n/useTranslation";
 
-const SENT_KEY = "mb-contact-sent";
+const SENT_KEY = "mb-contact-sent-v2";
 const SENT_TTL_MS = 24 * 60 * 60 * 1000;
 
 function hasRecentSend() {
@@ -86,10 +86,8 @@ export default function Contato() {
 
       const code = data?.error;
       if (code === "validation") setError(m.contato.errorValidation);
-      else if (code === "rate_limit") {
-        rememberSend();
-        setSent(true);
-      } else setError(m.contato.errorSend);
+      else if (code === "rate_limit") setError(m.contato.errorRateLimit);
+      else setError(m.contato.errorSend);
     } catch {
       setError(m.contato.errorNetwork);
     } finally {

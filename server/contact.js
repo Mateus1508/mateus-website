@@ -9,7 +9,7 @@ import {
 
 const hitsByKey = new Map()
 const WINDOW_MS = 24 * 60 * 60 * 1000
-const MAX_HITS = 1
+const MAX_HITS = 5
 
 function clientKey(req) {
   const forwarded = req.headers['x-forwarded-for']
