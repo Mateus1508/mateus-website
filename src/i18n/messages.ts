@@ -206,7 +206,7 @@ const en = {
     greeting: "Hi, I'm Mateus.",
     badgeConsulting: 'Software Engineer',
     badgeProjects: 'Open to remote',
-    h1Before: 'I ship production software in',
+    h1Before: 'I deliver production software in',
     h1Accent: 'React, NestJS & TypeScript.',
     subtitle:
       '4+ years on B2B platforms and microservices — APIs, billing, Azure, and Kubernetes. Brazil-based, open to remote roles worldwide.',
@@ -219,7 +219,7 @@ const en = {
     titleAccent: 'solves',
     titleAfter: ', not complicates',
     intro:
-      'I stay close to the business problem: clear architecture, code that can be maintained, and work that actually ships.',
+      'I stay close to the business problem: clear architecture, code that can be maintained, and work that actually goes live.',
     pillars: [
       {
         title: 'Current stack',
@@ -287,7 +287,7 @@ const en = {
   portfolio: {
     kicker: '// selected work',
     titleBefore: 'What I',
-    titleAccent: 'shipped',
+    titleAccent: 'delivered',
     intro:
       'Systems I built and evolved in production: B2B hubs, microservices, monitoring, biometrics, payments, and mobile apps.',
     legendPro: 'Professional project',

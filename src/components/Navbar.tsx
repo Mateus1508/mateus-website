@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { Globe, Menu, Moon, Sun, X } from 'lucide-react'
+import { Menu, Moon, Sun, X } from 'lucide-react'
 import { NAVBAR_ITEMS } from '../content/navbarLinks'
 import { LOGO_MB } from '../assets'
 import { usePreferences } from '../context/PreferencesContext'
 import { useTranslation } from '../i18n/useTranslation'
+import LanguageSwitch from './LanguageSwitch'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -62,18 +63,11 @@ export default function Navbar() {
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
-          <button
-            type="button"
-            className="inline-flex items-center gap-2 h-10 px-3 rounded border border-dark-5 bg-dark-2 text-slate-300 hover:border-cyan/30 hover:text-cyan transition-all duration-300"
-            aria-label={m.nav.selectLanguage}
-            title={m.nav.selectLanguage}
-            onClick={() => setLocale(locale === 'pt' ? 'en' : 'pt')}
-          >
-            <Globe size={16} className="text-cyan/70" />
-            <span className="font-display text-[0.7rem] font-bold uppercase tracking-widest">
-              {locale.toUpperCase()}
-            </span>
-          </button>
+          <LanguageSwitch
+            locale={locale}
+            setLocale={setLocale}
+            selectLabel={m.nav.selectLanguage}
+          />
 
           <a
             href="#contato"
@@ -113,14 +107,11 @@ export default function Navbar() {
             >
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
-            <button
-              type="button"
-              onClick={() => setLocale(locale === 'pt' ? 'en' : 'pt')}
-              className="inline-flex items-center gap-2 h-10 px-3 rounded border border-dark-5 text-slate-300"
-            >
-              <Globe size={16} />
-              {locale.toUpperCase()}
-            </button>
+            <LanguageSwitch
+              locale={locale}
+              setLocale={setLocale}
+              selectLabel={m.nav.selectLanguage}
+            />
           </div>
           <a
             href="#contato"

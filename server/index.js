@@ -179,10 +179,11 @@ app.post('/api/contact', async (req, res) => {
       <p>${escapeHtml(parsed.message).replace(/\n/g, '<br>')}</p>
     `
 
+    const senderName = parsed.name.replace(/["\\]/g, '').trim() || 'Site contact'
     const info = await transporter.sendMail({
-      from,
+      from: `"${senderName} via portfolio" <${from}>`,
       to,
-      replyTo: parsed.email,
+      replyTo: `"${senderName}" <${parsed.email}>`,
       subject,
       text,
       html,

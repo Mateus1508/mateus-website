@@ -13,7 +13,7 @@ type Preferences = {
 
 const PreferencesContext = createContext<Preferences | null>(null)
 
-const STORAGE_KEY = 'softbel:preferences:v1'
+const STORAGE_KEY = 'mateus:preferences:v2'
 
 function readStored(): Partial<Pick<Preferences, 'theme' | 'locale'>> {
   try {
@@ -33,10 +33,11 @@ function readStored(): Partial<Pick<Preferences, 'theme' | 'locale'>> {
 export function PreferencesProvider({ children }: { children: React.ReactNode }) {
   const stored = useMemo(() => (typeof window === 'undefined' ? {} : readStored()), [])
   const [theme, setTheme] = useState<Theme>(stored.theme ?? 'dark')
-  const [locale, setLocale] = useState<Locale>(stored.locale ?? 'pt')
+  const [locale, setLocale] = useState<Locale>(stored.locale ?? 'en')
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
+    document.documentElement.lang = locale === 'pt' ? 'pt-BR' : 'en'
     document.documentElement.classList.toggle('dark', theme === 'dark')
     document.documentElement.classList.toggle('light', theme === 'light')
 
