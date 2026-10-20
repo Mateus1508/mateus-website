@@ -24,7 +24,7 @@ const pt = {
     h1Before: 'Entrego software em produção com',
     h1Accent: 'React, NestJS e TypeScript.',
     subtitle:
-      'Mais de 4 anos em plataformas B2B e microsserviços — APIs, billing, Azure e Kubernetes. No Brasil, aberto a vagas remotas no exterior.',
+      '5+ anos em plataformas B2B e microsserviços — APIs, billing, Azure e Kubernetes. No Brasil, aberto a vagas remotas no exterior.',
     cta: 'Vamos conversar',
     ctaSecondary: 'Ver trabalhos',
   },
@@ -211,7 +211,7 @@ const en = {
     h1Before: 'I deliver production software in',
     h1Accent: 'React, NestJS & TypeScript.',
     subtitle:
-      '4+ years on B2B platforms and microservices — APIs, billing, Azure, and Kubernetes. Brazil-based, open to remote roles worldwide.',
+      '5+ years on B2B platforms and microservices — APIs, billing, Azure, and Kubernetes. Brazil-based, open to remote roles worldwide.',
     cta: 'Get in touch',
     ctaSecondary: 'See my work',
   },
