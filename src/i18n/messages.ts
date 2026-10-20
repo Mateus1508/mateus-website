@@ -122,11 +122,11 @@ const pt = {
     linkedin: 'LinkedIn',
     github: 'GitHub',
     bioParas: [
-      'Sou Full Stack Software Engineer e construo produtos escaláveis e experiências de ponta a ponta com TypeScript, React, Next.js e Node.js.',
+      'Sou Full Stack Software Engineer com 5+ anos de experiência construindo produtos escaláveis e experiências de ponta a ponta com TypeScript, React, Next.js e Node.js.',
       'Na EverOn, desenvolvi um fluxo de checkout para uma plataforma B2B que automatizou assinatura de contrato, cobrança, acompanhamento de pagamento e liberação de acesso, reduzindo a carga de trabalho do time comercial em cerca de 80%.',
-      'Também contribuí na modernização do CNP, plataforma legada com 29 microsserviços, otimizando a mensageria RabbitMQ, atualizando componentes Node.js e melhorando os pipelines de CI/CD com Docker e Azure DevOps.',
-      'Minha stack principal inclui React, Next.js, TypeScript, Node.js, NestJS, Hapi, PostgreSQL, MongoDB, Redis, RabbitMQ, Docker e Kubernetes.',
-      'Estou aberto a oportunidades remotas de Full Stack Engineer focadas em construir produtos confiáveis e escaláveis.',
+      'Contribuí na modernização do CNP, plataforma legada com 29 microsserviços, otimizando a mensageria RabbitMQ, atualizando componentes Node.js e melhorando os pipelines de CI/CD com Docker e Azure DevOps.',
+      'Minha experiência técnica também inclui NestJS, Hapi, PostgreSQL, MongoDB, Redis, RabbitMQ, Jest, Docker, Kubernetes e Azure DevOps.',
+      'Aberto a oportunidades remotas de Full Stack Engineer focadas em construir produtos confiáveis e escaláveis.',
     ],
     skills: [
       'React e Next.js',
@@ -309,11 +309,11 @@ const en = {
     linkedin: 'LinkedIn',
     github: 'GitHub',
     bioParas: [
-      'I\'m a Full Stack Software Engineer focused on building scalable products and end-to-end experiences with TypeScript, React, Next.js, and Node.js.',
-      'At EverOn, I developed a checkout flow for a B2B platform that automated contract signing, billing, payment tracking, and access provisioning, reducing the commercial team\'s workload by approximately 80%.',
-      'I also contributed to modernizing CNP, a legacy platform with 29 microservices, optimizing RabbitMQ messaging, updating Node.js components, and improving Docker and Azure DevOps CI/CD pipelines.',
-      'My core stack includes React, Next.js, TypeScript, Node.js, NestJS, Hapi, PostgreSQL, MongoDB, Redis, RabbitMQ, Docker, and Kubernetes.',
-      'I\'m open to remote Full Stack Engineer opportunities focused on building reliable, scalable products.',
+      'I\'m a Full Stack Software Engineer with 5+ years of experience building scalable products and end-to-end experiences using TypeScript, React, Next.js, and Node.js.',
+      'At EverOn, developed a checkout flow for a B2B platform that automated contract signing, billing, payment tracking, and access provisioning, reducing the commercial team\'s workload by approximately 80%.',
+      'Contributed to modernizing CNP, a legacy platform with 29 microservices, optimizing RabbitMQ messaging, updating Node.js components, and improving Docker and Azure DevOps CI/CD pipelines.',
+      'Technical experience also includes NestJS, Hapi, PostgreSQL, MongoDB, Redis, RabbitMQ, Jest, Docker, Kubernetes, and Azure DevOps.',
+      'Open to remote Full Stack Engineer opportunities focused on building reliable, scalable products.',
     ],
     skills: [
       'React & Next.js',
